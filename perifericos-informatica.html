@@ -209,6 +209,26 @@
             --shadow-md: 0 5px 15px rgba(0,0,0,0.08);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
             --transition: all 0.3s ease;
+
+            /* TEMA CLARO (padrão) */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-primary: #e1e8ed;
+            --shadow-primary: rgba(0,0,0,0.1);
+        }
+
+        /* Tema Escuro */
+        :root[data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3a3a3a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-primary: #404040;
+            --shadow-primary: rgba(0, 0, 0, 0.5);
         }
 
         /* ========================================
@@ -228,8 +248,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: var(--font-size-base);
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         img {
@@ -351,11 +372,12 @@
          * CARDS
          * ======================================== */
         .card {
-            background: white;
+            background: var(--bg-secondary);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-md);
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-md);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card {
@@ -389,13 +411,13 @@
         .product-image {
             width: 100%;
             height: 200px;
-            background: var(--border-color);
+            background: var(--bg-tertiary);
             border-radius: var(--border-radius);
             margin-bottom: var(--spacing-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light-text);
+            color: var(--text-secondary);
             font-size: var(--font-size-sm);
         }
 
@@ -408,6 +430,7 @@
             align-items: center;
             margin-bottom: var(--spacing-xs);
             font-size: var(--font-size-sm);
+            color: var(--text-primary);
         }
 
         .spec-item::before {
@@ -418,7 +441,7 @@
         }
 
         .product-price {
-            background: var(--bg-color);
+            background: var(--bg-tertiary);
             padding: var(--spacing-sm);
             border-radius: var(--border-radius);
             text-align: center;
@@ -430,7 +453,7 @@
 
         .product-description {
             margin: var(--spacing-sm) 0;
-            color: var(--light-text);
+            color: var(--text-secondary);
             line-height: 1.5;
         }
 
@@ -438,31 +461,33 @@
          * NAVEGAÇÃO E BREADCRUMBS
          * ======================================== */
         .breadcrumbs {
-            background: white;
+            background: var(--bg-secondary);
             padding: var(--spacing-sm) 0;
             margin-bottom: var(--spacing-md);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-primary);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .breadcrumbs a {
-            color: var(--light-text);
+            color: var(--text-secondary);
         }
 
         .breadcrumbs span {
-            color: var(--text-color);
+            color: var(--text-primary);
         }
 
         .breadcrumb-separator {
             margin: 0 var(--spacing-xs);
-            color: var(--light-text);
+            color: var(--text-secondary);
         }
 
         .toc {
-            background: white;
+            background: var(--bg-secondary);
             padding: var(--spacing-md);
             border-radius: var(--border-radius);
             margin-bottom: var(--spacing-lg);
             box-shadow: var(--shadow-sm);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .toc ul {
@@ -603,9 +628,9 @@
             }
         }
 
-        /* ======================================== */
-        /* CARROSSEL DE IMAGENS */
-        /* ======================================== */
+        /* ========================================
+         * CARROSSEL DE IMAGENS - VERSÃO FUNCIONAL
+         * ======================================== */
         .product-carousel {
             position: relative;
             width: 100%;
@@ -645,21 +670,15 @@
             border: none;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
             z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 18px;
             font-weight: bold;
         }
 
         .carousel-btn:hover {
             background: rgba(0, 0, 0, 0.8);
-            transform: translateY(-50%) scale(1.1);
         }
 
         .carousel-btn.prev {
@@ -695,12 +714,10 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.6);
             cursor: pointer;
-            transition: all 0.3s ease;
             padding: 0;
         }
 
         .indicator:hover {
-            transform: scale(1.2);
             background: rgba(255, 255, 255, 0.9);
         }
 
@@ -720,38 +737,6 @@
             border-radius: 15px;
             font-size: 0.85rem;
             z-index: 10;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .carousel-btn {
-                width: 35px;
-                height: 35px;
-            }
-
-            .carousel-btn.prev {
-                left: 10px;
-            }
-
-            .carousel-btn.next {
-                right: 10px;
-            }
-
-            .indicator {
-                width: 10px;
-                height: 10px;
-            }
-
-            .indicator.active {
-                width: 28px;
-            }
-        }
-
-        /* Animação de Zoom ao Hover */
-        .product-carousel:hover .carousel-image.active {
-            transform: scale(1.05);
-            transition: transform 0.5s ease;
         }
 
         .carousel-fallback {
@@ -804,9 +789,142 @@
             content: "🔗";
             margin-right: var(--spacing-xs);
         }
+
+        /* ========================================
+         * TEMA ESCURO - AJUSTES ESPECÍFICOS
+         * ======================================== */
+        :root[data-theme="dark"] .product-carousel {
+            background: var(--bg-tertiary);
+        }
+
+        :root[data-theme="dark"] .carousel-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        :root[data-theme="dark"] .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        :root[data-theme="dark"] .carousel-indicators {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        :root[data-theme="dark"] .carousel-counter {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        :root[data-theme="dark"] .comparison-table th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .comparison-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        :root[data-theme="dark"] .faq-question {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .faq-answer {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--border-primary);
+        }
+
+        :root[data-theme="dark"] .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        :root[data-theme="dark"] h1,
+        :root[data-theme="dark"] h2,
+        :root[data-theme="dark"] h3 {
+            color: #ffffff;
+        }
+
+        :root[data-theme="dark"] .subtitle {
+            color: var(--text-secondary);
+        }
+
+        :root[data-theme="dark"] .spec-item {
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+         * BOTÃO DE ALTERNÂNCIA DE TEMA
+         * ======================================== */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--border-primary);
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px var(--shadow-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            user-select: none;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 20px var(--shadow-primary);
+        }
+
+        .theme-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Animação do ícone ao trocar */
+        @keyframes iconSwap {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(0.8); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .theme-toggle-btn.switching {
+            animation: iconSwap 0.6s ease;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .theme-toggle-btn {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- ========================================
+     * BOTÃO DE ALTERNÂNCIA DE TEMA
+     * ======================================== -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema claro/escuro">
+        ☀️
+    </button>
     <!-- ========================================
      * BREADCRUMBS
      * ======================================== -->
@@ -1448,7 +1566,7 @@
                     if (e.key === 'ArrowRight') this.nextSlide();
                 });
 
-                // Set first slide as active
+                // Set first slide as active - versão simples
                 if (this.images.length > 0) {
                     this.goToSlide(0);
                 }
@@ -1473,7 +1591,7 @@
                         if (img.src.includes('.webp')) {
                             img.src = `/images/${this.productFolder}/${i}.jpg`;
                             img.onerror = () => {
-                                // Se .jpg também falhar, mostra placeholder
+                                // Se .jpg também falhar, mostra placeholder elegante
                                 this.createPlaceholderImage(img, i);
                             };
                         } else {
@@ -1535,21 +1653,21 @@
             }
 
             createPlaceholderImage(imgElement, imageNumber) {
-                // Cria um div como placeholder
+                // Cria um div como placeholder simples
                 const placeholder = document.createElement('div');
                 placeholder.className = 'carousel-placeholder';
                 placeholder.innerHTML = `
                     <div class="placeholder-content">
                         <div class="placeholder-icon">📷</div>
                         <div class="placeholder-text">${this.productData.name}</div>
-                        <small>Imagem ${imageNumber}</small>
+                        <small>Imagem não disponível</small>
                     </div>
                 `;
 
                 // Substitui a imagem pelo placeholder
                 imgElement.parentNode.replaceChild(placeholder, imgElement);
 
-                // Adiciona CSS para o placeholder se não existir
+                // Adiciona CSS básico para o placeholder se não existir
                 if (!document.querySelector('#placeholder-styles')) {
                     const style = document.createElement('style');
                     style.id = 'placeholder-styles';
@@ -1557,11 +1675,10 @@
                         .carousel-placeholder {
                             width: 100%;
                             height: 100%;
-                            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                            background: #f5f7fa;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            border: 2px dashed #ddd;
                             border-radius: 8px;
                         }
                         .placeholder-content {
@@ -1693,6 +1810,69 @@
             console.log(`✅ ${carouselElements.length} carrosséis inicializados com sucesso!`);
 
             // ========================================
+            // SISTEMA DE TEMA CLARO/ESCURO
+            // ========================================
+            class ThemeToggle {
+                constructor() {
+                    this.html = document.documentElement;
+                    this.toggle = document.getElementById('theme-toggle');
+                    this.currentTheme = this.getTheme();
+
+                    this.init();
+                }
+
+                init() {
+                    // Aplicar tema salvo ou preferência do sistema
+                    this.applyTheme(this.currentTheme);
+
+                    // Event listener no botão
+                    this.toggle.addEventListener('click', () => this.switchTheme());
+                }
+
+                getTheme() {
+                    // Verificar localStorage primeiro
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) return savedTheme;
+
+                    // Verificar preferência do sistema
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        return 'dark';
+                    }
+
+                    return 'light';
+                }
+
+                applyTheme(theme) {
+                    this.html.setAttribute('data-theme', theme);
+                    this.updateIcon(theme);
+                    localStorage.setItem('theme', theme);
+                    this.currentTheme = theme;
+                }
+
+                switchTheme() {
+                    const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                    this.applyTheme(newTheme);
+                }
+
+                updateIcon(theme) {
+                    // Trocar ícone do botão com animação
+                    const icon = theme === 'dark' ? '🌙' : '☀️';
+
+                    // Adicionar classe de animação
+                    this.toggle.classList.add('switching');
+
+                    // Trocar ícone após um pequeno delay para animação
+                    setTimeout(() => {
+                        this.toggle.innerHTML = icon;
+                        this.toggle.classList.remove('switching');
+                    }, 150);
+                }
+            }
+
+            // Inicializar sistema de tema
+            new ThemeToggle();
+
+            // ========================================
             // FAQ FUNCTIONALITY
             // ========================================
             window.toggleFAQ = function(element) {
@@ -1778,9 +1958,9 @@
        - Substitua pelo seu link completo de afiliado
        - Mantenha os atributos: target="_blank" rel="noopener nofollow"
 
-    3. FUNCIONALIDADES DO CARROSSEL:
+    3. FUNCIONALIDADES DO CARROSSEL (Versão Básica Funcional):
        ✅ Detecção automática de imagens por pasta
-       ✅ Navegação por setas (← →)
+       ✅ Navegação por setas (‹ ›)
        ✅ Indicadores clicáveis (bolinhas)
        ✅ Swipe touch em dispositivos móveis
        ✅ Navegação por teclado (setas esquerda/direita)
@@ -1788,19 +1968,21 @@
        ✅ Contador visual (ex: "2/4")
        ✅ Zoom leve ao passar mouse (hover)
        ✅ Fallback automático se imagens não existirem
-       ✅ Performance otimizada com IntersectionObserver
+       ✅ Placeholders elegantes quando imagens não disponíveis
 
-    4. COMO ADICIONAR NOVO PRODUTO:
-       - Copie um bloco <div class="product-card">...</div>
-       - Altere: data-product-folder (nome da pasta de imagens)
-       - Adicione dados no objeto productsData do JavaScript
-       - Crie a pasta de imagens correspondente
+    4. SISTEMA DE TEMA CLARO/ESCURO:
+       ✅ Botão de alternância no canto superior direito
+       ✅ Detecta preferência do sistema automaticamente
+       ✅ Salva escolha no localStorage
+       ✅ Transições suaves entre temas (0.3s)
+       ✅ Ícones animados: ☀️ (claro) / 🌙 (escuro)
+       ✅ Todos os elementos ajustados para tema escuro
+       ✅ Responsivo e acessívelta de imagens correspondente
        - O carrossel será criado automaticamente
 
     5. COMO ADICIONAR NOVA CATEGORIA:
        - Copie uma seção completa (H2 até fim dos produtos)
-       - Altere o ID da seção
-       - Altere o H2 e descrição
+       - altere o ID da seção
        - Adicione os produtos seguindo o padrão
        - Atualize o índice navegável (TOC)
 

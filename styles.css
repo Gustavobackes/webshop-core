@@ -1,0 +1,843 @@
+/* ============================================
+   PERIFÉRICOS ESSENCIAIS - STYLESHEET
+   Site de Afiliados com Tema Claro/Escuro
+   ============================================ */
+
+/* ========================================
+   SUMÁRIO:
+   1. Variáveis CSS
+   2. Reset e Base
+   3. Layout Geral
+   4. Header e Navegação
+   5. Seções de Conteúdo
+   6. Cards de Produtos
+   7. Carrossel de Imagens
+   8. Botões e CTAs
+   9. Tabela Comparativa
+   10. FAQ
+   11. Tema Escuro (Dark Mode)
+   12. Responsividade Mobile
+   13. Animações e Transições
+   ======================================== */
+
+/* ========================================
+   1. VARIÁVEIS CSS
+   ======================================== */
+:root {
+    /* Cores - Tema Claro */
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --success-color: #27ae60;
+
+    /* Backgrounds */
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f8f9ff;
+
+    /* Textos */
+    --text-primary: #333333;
+    --text-secondary: #ffffff;
+    --text-muted: #f0f0f0;
+
+    /* Bordas e Sombras */
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+
+    /* Espaçamentos */
+    --spacing-xs: 8px;
+    --spacing-sm: 15px;
+    --spacing-md: 25px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 15px;
+    --radius-xl: 20px;
+
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Carrossel */
+    --carousel-height: 280px;
+}
+
+/* Variáveis - Tema Escuro */
+:root[data-theme="dark"] {
+    /* Backgrounds */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3a3a3a;
+
+    /* Textos */
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+
+    /* Bordas e Sombras */
+    --border-color: #404040;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.4);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ========================================
+   2. RESET E BASE
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color var(--transition-base),
+                color var(--transition-base);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* ========================================
+   3. LAYOUT GERAL
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ========================================
+   4. TIPOGRAFIA
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: var(--font-size-4xl);
+    color: var(--secondary-color);
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+    color: var(--secondary-color);
+    margin-top: var(--spacing-lg);
+}
+
+h3 {
+    font-size: var(--font-size-2xl);
+    color: var(--secondary-color);
+}
+
+.subtitle {
+    font-style: italic;
+    color: var(--light-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ========================================
+   5. CARDS
+   ======================================== */
+.card {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card {
+    position: relative;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    background: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.product-specs {
+    margin: var(--spacing-sm) 0;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.spec-item::before {
+    content: "✓";
+    color: var(--success-color);
+    font-weight: bold;
+    margin-right: var(--spacing-xs);
+}
+
+.product-price {
+    background: var(--bg-tertiary);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    color: var(--accent-color);
+    margin: var(--spacing-sm) 0;
+}
+
+.product-description {
+    margin: var(--spacing-sm) 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ========================================
+   6. BOTÕES E CTAS
+   ======================================== */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-color), #c0392b);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-large {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-lg);
+}
+
+/* ========================================
+   7. NAVEGAÇÃO E BREADCRUMBS
+   ======================================== */
+.breadcrumbs {
+    background: var(--bg-secondary);
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.breadcrumbs a {
+    color: var(--text-secondary);
+}
+
+.breadcrumbs span {
+    color: var(--text-primary);
+}
+
+.breadcrumb-separator {
+    margin: 0 var(--spacing-xs);
+    color: var(--text-secondary);
+}
+
+.toc {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.toc a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* ========================================
+   8. TABELA COMPARATIVA
+   ======================================== */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+    background: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-table tr:nth-child(even) {
+    background: var(--bg-color);
+}
+
+/* ========================================
+   9. FAQ
+   ======================================== */
+.faq {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    padding: var(--spacing-md);
+    background: var(--bg-color);
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: "+";
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+}
+
+.faq-item.active .faq-question::after {
+    content: "−";
+}
+
+.faq-answer {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* ========================================
+   10. CARROSSEL DE IMAGENS - VERSÃO FUNCIONAL
+   ======================================== */
+.product-carousel {
+    position: relative;
+    width: 100%;
+    height: var(--carousel-height);
+    background: #f8f9fa;
+    overflow: hidden;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-image {
+    min-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+    flex-shrink: 0;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn.prev {
+    left: 15px;
+}
+
+.carousel-btn.next {
+    right: 15px;
+}
+
+.carousel-btn.prev::before {
+    content: "‹";
+}
+
+.carousel-btn.next::before {
+    content: "›";
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.indicator.active {
+    background: var(--accent-color);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.carousel-counter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    z-index: 10;
+}
+
+.carousel-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--bg-color);
+    color: var(--light-text);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+
+.section {
+    margin: var(--spacing-xl) 0;
+}
+
+/* ========================================
+   11. AFILIADOS
+   ======================================== */
+.affiliate-btn {
+    position: relative;
+}
+
+.affiliate-btn::before {
+    content: "🔗";
+    margin-right: var(--spacing-xs);
+}
+
+/* ========================================
+   12. TEMA ESCURO (DARK MODE)
+   ======================================== */
+
+/* Botão Toggle de Tema */
+.theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+    background: var(--bg-secondary);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px var(--shadow-primary);
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    user-select: none;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 20px var(--shadow-primary);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animação do ícone ao trocar */
+@keyframes iconSwap {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(0.8); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.theme-toggle-btn.switching {
+    animation: iconSwap 0.6s ease;
+}
+
+/* Ajustes específicos do tema escuro */
+:root[data-theme="dark"] .product-carousel {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="dark"] .carousel-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+:root[data-theme="dark"] .carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+:root[data-theme="dark"] .carousel-indicators {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+:root[data-theme="dark"] .carousel-counter {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+/* ==================================================
+ * SEÇÃO COMPARATIVA - CORREÇÃO DEFINITIVA
+ * ================================================== */
+
+/* ========== TEMA CLARO (Light Mode) ========== */
+
+#comparativo,
+.comparison-section {
+    background: #ffffff !important;
+    color: #333333 !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.comparison-table {
+    background: #ffffff !important;
+    color: #333333 !important;
+}
+
+.comparison-table thead th {
+    background: #f8f9fa !important;
+    color: #2c3e50 !important;
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+.comparison-table tbody td {
+    background: #ffffff !important;
+    color: #333333 !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+.comparison-table tbody tr {
+    background: #ffffff !important;
+}
+
+.comparison-table tbody tr:hover {
+    background: #f8f9ff !important;
+}
+
+.comparison-table tbody tr:hover td {
+    background: #f8f9ff !important;
+}
+
+/* ========== TEMA ESCURO (Dark Mode) ========== */
+
+:root[data-theme="dark"] #comparativo,
+:root[data-theme="dark"] .comparison-section {
+    background: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+:root[data-theme="dark"] .faq {
+    background: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+:root[data-theme="dark"] .comparison-table {
+    background: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+:root[data-theme="dark"] .comparison-table thead th {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid #404040 !important;
+}
+
+:root[data-theme="dark"] .comparison-table tbody td {
+    background: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-bottom: 1px solid #404040 !important;
+}
+
+:root[data-theme="dark"] .comparison-table tbody tr {
+    background: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+:root[data-theme="dark"] .comparison-table tbody tr:hover {
+    background: #2d2d2d !important; /* Mesma cor, SEM mudança */
+}
+
+:root[data-theme="dark"] .comparison-table tbody tr:hover td {
+    background: #2d2d2d !important; /* Mesma cor, SEM mudança */
+}
+
+:root[data-theme="dark"] .comparison-table strong {
+    color: #ffffff !important;
+}
+
+:root[data-theme="dark"] .comparison-table th strong {
+    color: #ffffff !important;
+}
+
+:root[data-theme="dark"] #comparativo h2,
+:root[data-theme="dark"] .comparison-section h2 {
+    color: #ffffff !important;
+}
+
+:root[data-theme="dark"] .comparison-table caption {
+    color: #e0e0e0 !important;
+}
+
+:root[data-theme="dark"] .faq-question {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .faq-answer {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+}
+
+:root[data-theme="dark"] .btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3 {
+    color: #ffffff;
+}
+
+:root[data-theme="dark"] .subtitle {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .spec-item {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   13. RESPONSIVIDADE MOBILE
+   ======================================== */
+@media (max-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-table {
+        font-size: var(--font-size-sm);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: var(--spacing-xs);
+    }
+
+    /* Responsivo para tema toggle */
+    .theme-toggle-btn {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-image {
+        height: 150px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: var(--spacing-xs);
+    }
+}

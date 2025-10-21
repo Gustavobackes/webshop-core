@@ -177,36 +177,15 @@ class ProductCarousel {
 
         for (let i = 1; i <= this.totalSlides; i++) {
             const img = document.createElement('img');
-            img.src = `/images/${this.productFolder}/${i}.png`;
+            img.src = `/images/${this.productFolder}/${i}.jpg`;
             img.alt = this.productData.altTexts[i-1] || `${this.productData.name} imagem ${i}`;
             img.className = 'carousel-image';
             img.loading = 'lazy';
 
-            // Sistema de fallback melhorado
+            // Sistema simplificado: assume sempre .jpg
             img.onerror = () => {
-                // Tenta .jpg se .png falhar
-                if (img.src.includes('.png')) {
-                    img.src = `/images/${this.productFolder}/${i}.jpg`;
-                    img.onerror = () => {
-                        // Se .jpg também falhar, tenta .jpeg
-                        if (img.src.includes('.jpg')) {
-                            img.src = `/images/${this.productFolder}/${i}.jpeg`;
-                            img.onerror = () => {
-                                // Se nenhum formato funcionar, mostra placeholder elegante
-                                this.createPlaceholderImage(img, i);
-                            };
-                        } else {
-                            // Mostra placeholder diretamente
-                            this.createPlaceholderImage(img, i);
-                        }
-                    };
-                } else if (img.src.includes('.jpg') || img.src.includes('.jpeg')) {
-                    // Mostra placeholder diretamente se JPG/JPEG falhar
-                    this.createPlaceholderImage(img, i);
-                } else {
-                    // Mostra placeholder diretamente
-                    this.createPlaceholderImage(img, i);
-                }
+                // Mostra placeholder diretamente se a imagem .jpg não carregar
+                this.createPlaceholderImage(img, i);
             };
 
             // Se a imagem carregar com sucesso, adiciona classe loaded
